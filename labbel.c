@@ -6,6 +6,26 @@ void gotoxy(COORD *i)
 {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), *i);
 }
+void drawlabbelcross()
+{
+	int count, i;
+	int randx,randy;
+
+	srand((int)time(NULL));
+	printf("몇개의 연결 구간 : ");
+	scanf("%d", &count);
+	for (i = 0; i < count; i++)
+	{
+		randy = rand() % labbelMax;
+		randx = rand() % (labbelmap->size);
+		while (randx % 2 != 0 && randx >= labbelmap->size-1)
+		{
+			randx = rand() % labbelmap->size;
+		}
+		labbelmap->map[randx][randy] = labbelCross;
+		labbelmap->map[randx + 2][randy] = labbelCrossend;
+	}
+}
 void drawlabbel()
 {
 	COORD k;
@@ -38,6 +58,7 @@ void drawlabbel()
 		k.X=k.X+4;
 		k.Y = 5;
 	}
+	
 }
 void drawPicture(int i,int j)
 {
@@ -47,7 +68,7 @@ void drawPicture(int i,int j)
 	}
 	else if (labbelmap->map[i][j] == labbelCross)
 	{
-		printf("□");
+		printf("□□□□□");
 	}
 	else if (labbelmap->map[i][j] == labbelempty)
 	{
@@ -79,5 +100,9 @@ void main()
 {
 	labbelinit();
 	drawlabbel();
+	drawlabbelcross();
+	system("cls");
+	drawlabbel();
+
 	system("pause");
 }

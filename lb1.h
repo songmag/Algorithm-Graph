@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <Windows.h>
-
+#include <time.h>
 #define labbelBone 5000
 #define labbelCross 1000
 #define labbelempty 2000
 #define labbelMax 20
+#define labbelCrossend 3000
 
 typedef struct labbelstruct {
 	int **map;
