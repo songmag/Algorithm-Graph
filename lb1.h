@@ -1,7 +1,8 @@
-#include <stdio.h>
+#include<stdio.h>
 #include <stdlib.h>
 #include <Windows.h>
 #include <time.h>
+#pragma warning(disable:4996)
 #define labbelBone 5000
 #define labbelCross 1000
 #define labbelempty 2000
