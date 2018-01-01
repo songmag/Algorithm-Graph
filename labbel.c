@@ -6,6 +6,21 @@ void gotoxy(COORD *i)
 {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), *i);
 }
+
+
+void fillLabbel(int i, int j)//i = 시작값, j == Ystart(반복해서 돌림)
+{	
+	COORD C_xy;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
+	FindLocation(&C_xy, i, j);
+	gotoxy(&C_xy);
+	drawPicture(i, j);
+}
+void FindLocation(COORD *C_i,int i,int j)
+{
+	(*C_i).X = Xstart + rightPlus*i;
+	(*C_i).Y = Ystart + j;
+}//return 값은 COORD의 xy좌표 설정
 void drawlabbelcross()
 {
 	int count, i;
@@ -46,16 +61,15 @@ void drawlabbel()
 	gotoxy(&k);
 	printf("★사다리 타기★");
 
-	k.X = 5;
-	k.Y = 3;
-	gotoxy(&k);
+	k.X = Xstart;
+	k.Y = Ystart;
 
 	for (i = 0; i < labbelmap->size; i++)
 	{
 		if (i % 2 == 0)
 		{
 			gotoxy(&k);
-			printf("%d번", i / 2+1);
+			printf("%d번", (i / 2)+1);
 			k.Y++;
 		}
 		for (j = 0; j < labbelMax;j++)
@@ -67,10 +81,10 @@ void drawlabbel()
 		if (i % 2 == 0)
 		{
 			gotoxy(&k);
-			printf("%d번", i / 2+1);
+			printf("%d번", (i / 2)+1);
 		}
-		k.X=k.X+4;
-		k.Y = 3;
+		k.X=k.X+rightPlus;
+		k.Y = Ystart;
 	}
 }//사다리 전체 그리기 구간
 void drawPicture(int i,int j)
@@ -81,7 +95,7 @@ void drawPicture(int i,int j)
 	}
 	else if (labbelmap->map[i][j] == labbelCross)
 	{
-		printf("├───┤");
+		printf("├───────┤");
 	}
 	else if (labbelmap->map[i][j] == labbelempty)
 	{

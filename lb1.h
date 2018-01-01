@@ -8,6 +8,9 @@
 #define labbelempty 2000
 #define labbelMax 20
 #define labbelCrossend 3000
+#define rightPlus 4
+#define Ystart 3
+#define Xstart 5
 
 typedef struct labbelstruct {
 	int **map;
@@ -18,3 +21,5 @@ void gotoxy(COORD *i);
 void drawlabbel();
 void drawPicture(int i, int j);
 void labbelinit();
+void drawlabbelcross();
+void fillLabbel(int i, int j);
