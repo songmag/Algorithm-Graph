@@ -21,5 +21,7 @@ void gotoxy(COORD *i);
 void drawlabbel();
 void drawPicture(int i, int j);
 void labbelinit();
+void FindLocation(COORD *C_i, int i, int j);
 void drawlabbelcross();
 void fillLabbel(int i, int j);
+void chooseone();

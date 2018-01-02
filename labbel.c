@@ -7,20 +7,48 @@ void gotoxy(COORD *i)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), *i);
 }
 
+void chooseone()
+{
+	COORD TEXT;
+	int index;
+	int for_i;
+	int save;
+	printf("Choose one :");
+	scanf("%d", &save);
+	index = (save - 1) * 2;
+	//i값
+	for (for_i = 0; for_i < labbelMax; for_i++)
+	{
+		fillLabbel(index, for_i);
+		if (labbelmap->map[index][for_i] == labbelCross)
+		{
+			index=index + 2;
+		}
+		else if (labbelmap->map[index][for_i] == labbelCrossend)
+		{
+			index=index - 2;
+		}
+	}
+	TEXT.Y = Ystart + labbelMax+2;
+	TEXT.X = Xstart + (labbelmap->size/2);
+	gotoxy(&TEXT);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+	printf("%d에서 사다리 %d 가 선택!",save, (index / 2) + 1);
+}
 
-void fillLabbel(int i, int j)//i = 시작값, j == Ystart(반복해서 돌림)
+void fillLabbel(int i, int j)
 {	
 	COORD C_xy;
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14);
-	FindLocation(&C_xy, i, j);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 18);
+	FindLocation(&C_xy, i, j+1);
 	gotoxy(&C_xy);
 	drawPicture(i, j);
-}
+}//if(처리 i%2 == 0 인경우에 FillLabel)
 void FindLocation(COORD *C_i,int i,int j)
 {
 	(*C_i).X = Xstart + rightPlus*i;
 	(*C_i).Y = Ystart + j;
-}//return 값은 COORD의 xy좌표 설정
+}//return 값은 COORD의 xy값 확인
 void drawlabbelcross()
 {
 	int count, i;
@@ -50,6 +78,7 @@ void drawlabbelcross()
 		labbelmap->map[randx][randy] = labbelCross;
 		labbelmap->map[randx + 2][randy] = labbelCrossend;
 	}
+
 }//사다리 연결하는 구간
 void drawlabbel()
 {
@@ -89,12 +118,19 @@ void drawlabbel()
 }//사다리 전체 그리기 구간
 void drawPicture(int i,int j)
 {
+	COORD labbelCrossfind;
 	if (labbelmap->map[i][j] == labbelBone)
 	{
 		printf("│");
 	}
 	else if (labbelmap->map[i][j] == labbelCross)
 	{
+		printf("├───────┤");
+	}
+	else if (labbelmap->map[i][j] == labbelCrossend)
+	{
+		FindLocation(&labbelCrossfind, i - 2, j+1);
+		gotoxy(&labbelCrossfind);
 		printf("├───────┤");
 	}
 	else if (labbelmap->map[i][j] == labbelempty)
@@ -131,5 +167,6 @@ void main()
 	drawlabbelcross();
 	system("cls");
 	drawlabbel();
+	chooseone();
 	system("pause");
 }
