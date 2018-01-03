@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\labbelhome.c">
+    <ClCompile Include="..\..\..\FastestLocationH.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\lblhom.h">
+    <ClInclude Include="..\..\..\FtLH.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

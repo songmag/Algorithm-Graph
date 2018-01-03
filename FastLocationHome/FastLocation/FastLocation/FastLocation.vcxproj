@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{F458BB31-950E-46D5-A39E-FF97031601CF}</ProjectGuid>
-    <RootNamespace>ladder_home</RootNamespace>
+    <ProjectGuid>{89743E18-8E69-4C07-838E-E3CA4A0B8B7E}</ProjectGuid>
+    <RootNamespace>FastLocation</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -111,10 +111,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\labbelhome.c" />
+    <ClCompile Include="..\..\..\FastestLocationH.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\lblhom.h" />
+    <ClInclude Include="..\..\..\FtLH.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
