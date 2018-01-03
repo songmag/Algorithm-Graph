@@ -28,6 +28,7 @@ void chooseone()
 		{
 			index = index - 2;
 		}
+		Sleep(100);
 	}
 	TEXT.Y = Ystart + labbelMax + 2;
 	TEXT.X = Xstart + (labbelmap->size / 2);
@@ -125,13 +126,13 @@ void drawPicture(int i, int j)
 	}
 	else if (labbelmap->map[i][j] == labbelCross)
 	{
-		printf("戍式式式式式式式扣");
+		printf("戍式式式扣");
 	}
 	else if (labbelmap->map[i][j] == labbelCrossend)
 	{
 		FindLocation(&labbelCrossfind, i - 2, j + 1);
 		gotoxy(&labbelCrossfind);
-		printf("戍式式式式式式式扣");
+		printf("戍式式式扣");
 	}
 	else if (labbelmap->map[i][j] == labbelempty)
 	{

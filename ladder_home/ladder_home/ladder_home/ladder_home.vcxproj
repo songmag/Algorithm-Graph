@@ -111,10 +111,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\labbel.c" />
+    <ClCompile Include="..\..\..\labbelhome.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\lb1.h" />
+    <ClInclude Include="..\..\..\lblhom.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
