@@ -28,6 +28,8 @@ typedef struct Graph {
 	struct edge *insertE;
 	int Vsize;
 	int Esize;
+	struct PTR *Vptr;
+	struct PTR *Eptr;
 }G;
 typedef struct vertex {
 	struct vertex *next;
@@ -37,7 +39,7 @@ typedef struct vertex {
 	int key;
 	char value[MAX];
 	int label;
-	struct PTR *Ptr;
+	
 }Vertex;
 //값 입력은 문자열로 받는다.
 typedef struct edge {
@@ -46,7 +48,7 @@ typedef struct edge {
 	int value;
 	struct edge* next;
 	struct edge* front;
-	struct PTR *Ptr;
+	
 }Edge;
 typedef struct Link {
 	struct Link *next;
@@ -62,20 +64,13 @@ typedef void (*Divice)();
 ///////////////FastestLocation.c/////////////////
 void insertVertex();//정점입력
 int vertexcheck(char *value);//정점 존재시 false, 미존재시 true
-//vertexinit()포함
-//vertexcheck포함
 void insertEdge();//간선입력
-//findvertex포함
-//Edgeinit포함
-//Edgecheck포함
-//minfind포함
-int Edgecheck(Vertex *firstvertex, Vertex *secondvertex);
+int Edgecheck(Vertex *firstvertex, Vertex *secondvertex);//Edge가 존재하는지 확인
 int minfind(Vertex *, Vertex *);//연결되어있는 간선이 적은것에서 탐색
-//간선 존재 여부 확인
 Vertex *findElem(char *);//정점 리스트 중 원소에 해당하는 정점 반환
 void Graphinit();//그래프 초기화
-void vertexinit();//다음 insert정점초기화
-void Edgeinit();//다음 insert간선 초기화
+void vertexinit(char *);//다음 insert정점초기화
+void Edgeinput(Vertex *,Vertex *);//다음 insert간선 초기화
 Vertex *opposite(Vertex *startvertex, Link *startlink);//반대쪽 정점 반환
 void GraphDevice(Divice work);
 void insertlink(Vertex *insertvertex);
