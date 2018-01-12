@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{89743E18-8E69-4C07-838E-E3CA4A0B8B7E}</ProjectGuid>
-    <RootNamespace>FastLocation</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <ProjectGuid>{D0E53848-373B-4240-AAF5-B7304FE0200B}</ProjectGuid>
+    <RootNamespace>FastLocationNT</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -111,11 +111,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\FastestLocationH.c" />
-    <ClCompile Include="..\..\..\MainPage.c" />
+    <ClCompile Include="..\..\FastestLocationNT.c" />
+    <ClCompile Include="..\..\FastestLocationNT2.c" />
+    <ClCompile Include="..\..\MainPage.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\FtLH.h" />
+    <ClInclude Include="..\..\FtLNT.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
