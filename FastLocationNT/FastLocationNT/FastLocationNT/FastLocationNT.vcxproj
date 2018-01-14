@@ -111,9 +111,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\divice.c" />
     <ClCompile Include="..\..\FastestLocationNT.c" />
     <ClCompile Include="..\..\FastestLocationNT2.c" />
     <ClCompile Include="..\..\MainPage.c" />
+    <ClCompile Include="..\..\Q.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\FtLNT.h" />

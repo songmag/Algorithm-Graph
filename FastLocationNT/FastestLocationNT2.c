@@ -3,6 +3,9 @@
 void main()
 {
 	Graphinit();
+	COORD xy;
+	xy.X = 10;
+	xy.Y = 3;
 	while (1)
 	{
 		mainPage();
@@ -10,19 +13,23 @@ void main()
 		{
 		case 1:
 			system("cls");
-			insertVertex();
+			insertVertex(xy);
 			system("cls");
 			break;
 		case 2:
 			system("cls");
-			insertEdge();
+			insertEdge(xy);
 			system("cls");
 			//insertEdge();
 			break;
 		case 3:
+			system("cls");
 			printAll();
+			system("cls");
 			break;
 		case 4:
+			FastLocation();
+			system("cls");
 			break;
 		case 5:
 			break;

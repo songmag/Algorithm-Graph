@@ -24,6 +24,12 @@
     <ClCompile Include="..\..\FastestLocationNT2.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\divice.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Q.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\FtLNT.h">

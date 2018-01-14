@@ -8,7 +8,7 @@ void mainPage()
 	COORD CTRL;
 
 	CTRL.X = 10;
-	CTRL.Y = 5;
+	CTRL.Y = 3;
 	
 	gotoxy(CTRL);
 	printf("Shortest Path");
@@ -20,10 +20,10 @@ void mainPage()
 	printf("2. 간선 입력");
 	CTRL.Y += 2;
 	gotoxy(CTRL);
-	printf("3. 최단 경로");
+	printf("3. 모든 정점 출력");
 	CTRL.Y += 2;
 	gotoxy(CTRL);
-	printf("4. 정점 삭제");
+	printf("4. 최단경로 출력");
 	CTRL.Y += 2;
 	gotoxy(CTRL);
 	printf("5. 정점 to 정점");
