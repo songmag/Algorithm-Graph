@@ -14,7 +14,7 @@ void Edgeinput(Vertex *first, Vertex *second)
 	make->value = (rand() % 10) + 1;
 	make->next = NULL;
 	make->front = drawgraph->insertE;
-
+	make->label = FRESH;
 	drawgraph->insertE->next = make;
 	drawgraph->insertE = make;
 	drawgraph->Eptr->TAIL = make;
@@ -123,8 +123,8 @@ void vertexinit(char *value)
 	make->HEAD->next = NULL;
 	drawgraph->Vsize += 1;
 	make->key = drawgraph->Vsize;
-	
-	make->label = INFINITE+drawgraph->Vsize;
+	make->heapindex = 0;
+	make->label = INFINITY+drawgraph->Vsize;
 	make->linksize = 0;
 	strcpy(make->value, value);
 	drawgraph->insertV->next = make;
@@ -168,4 +168,16 @@ Vertex *FindAboutKey(int key)
 		return NULL;
 	}
 	return mv_pointer;
+}
+
+void setFastestinit()
+{
+	Vertex *mv_pointer;
+	mv_pointer = drawgraph->VArray->next;
+	while (mv_pointer != NULL)
+	{
+		mv_pointer->label = INFINITY;
+		mv_pointer = mv_pointer->next;
+	}
+	return;
 }

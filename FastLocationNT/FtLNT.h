@@ -21,10 +21,12 @@
 //1. 정점,간선,인접리스트 전부 HEAD를 가지고 있으므로, 모든 작업 수행시 next 처리를 한 것이 시작점
 //2. ptr tail은 끝부분의 노드를 가리키고 있으므로 다음 NULL까지 수행 해야 함.
 
+//label과 value 설정
 #define FRESH 10000
 #define VISIT 200000
-#define INFINITE 88888
+#define INFINITY 88888
 #define MAX 15
+//Q설정
 #define parent(x) x/2
 #define leftchild(x) x*2
 #define rightchild(x) (x*2)+1
@@ -47,7 +49,7 @@ typedef struct vertex {
 	int key;
 	char value[MAX];
 	int label;
-	
+	int heapindex;
 }Vertex;
 //값 입력은 문자열로 받는다.
 typedef struct edge {
@@ -56,7 +58,7 @@ typedef struct edge {
 	int value;
 	struct edge* next;
 	struct edge* front;
-	
+	int label;
 }Edge;
 typedef struct Link {
 	struct Link *next;
@@ -97,11 +99,16 @@ void insertlink(Vertex *,Vertex *);//인접리스트 구현
 Vertex *FindAboutKey(int key);
 void FastLocation();
 void printAll();
+void setFastestinit();
+void printFastest(Vertex**);
 //////////////Q.c/////////////////////////////////
 void Qinit();
 void HeapMakeToUp();
-void swapKey(int,int,int);
+void swapKey(int,int,int,Vertex*,Vertex*);
 void QFree();
 void rdownheap(int index);
-int pop();
+Vertex* pop();
 int Empty();
+void printheap();
+void replacevertex(Vertex *);
+void upheap(int);

@@ -81,8 +81,9 @@ void printAll()
 		mv_pointer = k->HEAD->next;
 		while (mv_pointer != NULL)
 		{
-			printf("Connect>> %s", opposite(k, mv_pointer)->value);
+			printf("Connect>> %s weight >> %d", opposite(k, mv_pointer)->value,mv_pointer->EdgeInfo->value);
 			mv_pointer = mv_pointer->next;
+			printf("\n");
 		}
 		k = k->next;
 		printf("\n");
@@ -91,11 +92,57 @@ void printAll()
 }
 void FastLocation()
 {
+	char A[MAX];
+	int counting;
+	
+	Vertex *start,*minvertex, *oppositevertex;
+	Vertex **FastLocationArray;
+	Link *mv_pointer;
+		
+	FastLocationArray = (Vertex**)malloc(sizeof(Vertex*)*drawgraph->Vsize);
+	counting = 0;
+	setFastestinit();
+	printf("시작 지점 :");
+	scanf("%s", &A);
+	start = findElem(A);
+	if (start == NULL)
+	{
+		printf("출발 정점이 없습니다.");
+	}
+	start->label = 0;
 	Qinit();
+	printheap();
 	while (!Empty())
 	{
-		printf("%d\n", pop());
-	}
+		minvertex= pop();
+		mv_pointer = minvertex->HEAD->next;
+		while (mv_pointer != NULL)
+		{
+			oppositevertex = opposite(minvertex, mv_pointer);
+			if (oppositevertex->heapindex != 0)
+			{
+				if (oppositevertex->label > minvertex->label + mv_pointer->EdgeInfo->value)
+				 {
+					oppositevertex->label = minvertex->label + mv_pointer->EdgeInfo->value;
+					replacevertex(oppositevertex);
+					mv_pointer->EdgeInfo->label = VISIT;
+				}
+			}
+			mv_pointer = mv_pointer->next;
+		}
+		FastLocationArray[counting] = minvertex;
+		counting = counting + 1;
+	}//Q가 빌때까지
+	printFastest(FastLocationArray);
 	system("pause");
 }
-
+void printFastest(Vertex** find)
+{
+	int i;
+	i = 0;
+	for (i = 0; i < drawgraph->Vsize; i++)
+	{
+		printf("%d %d", find[i]->key,find[i]->label);
+		printf("\n");
+	}
+}

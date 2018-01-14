@@ -1,7 +1,7 @@
 #include "FtLNT.h"
 
 void main()
-{
+	{
 	Graphinit();
 	COORD xy;
 	xy.X = 10;
@@ -51,7 +51,7 @@ void Graphinit()
 	drawgraph->Vptr->TAIL = drawgraph->VArray;
 	drawgraph->Eptr->HEAD = drawgraph->EArray;
 	drawgraph->Eptr->TAIL = drawgraph->EArray;
-	
+	drawgraph->EArray->label = FRESH;
 	drawgraph->insertV = drawgraph->VArray;
 	drawgraph->insertE = drawgraph->EArray;
 	//그래프 초기화
@@ -65,9 +65,10 @@ void Graphinit()
 	{
 		drawgraph->VArray->value[i] = 0;
 	}
-	drawgraph->VArray->label = INFINITE;
+	drawgraph->VArray->label = INFINITY;
 	drawgraph->VArray->linksize = 0;
 	drawgraph->VArray->next = NULL;
+	drawgraph->VArray->heapindex = 0;
 	//정점
 	drawgraph->EArray->connect1 = NULL;
 	drawgraph->EArray->connect2 = NULL;
