@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <Windows.h>
 #include<time.h>
+#include<conio.h>
 //#include <pthread.h>
 
 //무방향 그래프
@@ -30,7 +31,9 @@
 #define parent(x) x/2
 #define leftchild(x) x*2
 #define rightchild(x) (x*2)+1
-
+//배경 설정
+#define defaultx 10
+#define defaulty 3
 typedef struct Graph {
 	struct vertex *VArray;
 	struct edge *EArray;
@@ -73,16 +76,22 @@ typedef struct Q {
 	int *heap;//키를 저장
 	int last;//마지막 index 저장
 }Q;
-int chooseDivice;//Main Page에서 선택된 작업으로 변동
+int chooseDivice[2];//Main Page에서 선택된 작업으로 변동
 typedef void (*Divice)();
 ///////////////FastestLocation.c/////////////////
-void insertVertex(COORD);//정점입력
-void insertEdge(COORD);//간선입력
+void insertVertex();//정점입력
+void insertEdge();//간선입력
 void Graphinit();//그래프 초기화
 ///////////////MainPage.c////////////////////////
-void mainPage();
 void gotoxy(COORD);
-///////////////END///////////////////////////////
+
+void mainPage();
+void graphinitprint();
+void graphprintchoose();
+void handdraw();
+void application();
+
+void down(COORD*);//goto down
 //전역처리//
 G *drawgraph;
 Q *FastestCheck;
@@ -101,6 +110,7 @@ void FastLocation();
 void printAll();
 void setFastestinit();
 void printFastest(Vertex**);
+void randominsertVertex();
 //////////////Q.c/////////////////////////////////
 void Qinit();
 void HeapMakeToUp();

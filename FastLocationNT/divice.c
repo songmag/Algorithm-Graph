@@ -181,3 +181,7 @@ void setFastestinit()
 	}
 	return;
 }
+void randominsertVertex()
+{
+
+}

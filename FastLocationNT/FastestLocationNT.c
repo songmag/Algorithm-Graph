@@ -1,9 +1,14 @@
 #include"FtLNT.h"
 
 
-void insertVertex(COORD xy)
+void insertVertex()
 {
+	COORD xy;
 	char insertValue[MAX];
+	
+	xy.X = 0;
+	xy.Y = 0;
+
 	gotoxy(xy);
 	printf("값을 입력하시오 : ");
 	scanf("%s",&insertValue);
@@ -19,19 +24,22 @@ void insertVertex(COORD xy)
 	}
 	else
 	{
-		xy.Y =xy.Y + 1;
+		xy.Y += 1;
 		gotoxy(xy);
 		printf("정점이 존재합니다.\n");
 		return;
 	}
 	return;
 }//정점 삽입
-void insertEdge(COORD xy)
+void insertEdge()
 {
 	char A[MAX],B[MAX];
 	Vertex *connect1;
 	Vertex *connect2;
-
+	COORD xy;
+	xy.X = 0;
+	xy.Y = 0;
+	
 	gotoxy(xy);
 
 	connect1 = drawgraph->VArray;
@@ -39,7 +47,7 @@ void insertEdge(COORD xy)
 
 	printf("정점1 입력 :");
 	scanf("%s", &A);
-	xy.Y = xy.Y + 2;
+	xy.Y +=  2;
 	gotoxy(xy);
 	printf("정점2 입력 :");
 	scanf("%s", &B);
@@ -47,7 +55,7 @@ void insertEdge(COORD xy)
 	connect2 = findElem(B);
 	if (connect1 == NULL || connect2 == NULL)
 	{
-		xy.Y++;
+		xy.Y+=1;
 		gotoxy(xy);
 		printf("정점이 없습니다. 재 입력 부탁드립니다.\n");
 		system("pause");
@@ -61,7 +69,7 @@ void insertEdge(COORD xy)
 	}//연결되어있는 간선이 없는경우에만 시행
 	else
 	{
-		xy.Y++;
+		xy.Y +=1;
 		gotoxy(xy);
 		printf("간선이 존재합니다.");
 		system("pause");
@@ -111,7 +119,6 @@ void FastLocation()
 	}
 	start->label = 0;
 	Qinit();
-	printheap();
 	while (!Empty())
 	{
 		minvertex= pop();
@@ -142,7 +149,12 @@ void printFastest(Vertex** find)
 	i = 0;
 	for (i = 0; i < drawgraph->Vsize; i++)
 	{
-		printf("%d %d", find[i]->key,find[i]->label);
+		if (find[i]->label == INFINITY)
+		{
+			printf("도착할수 없음\n");
+			continue;
+		}
+		printf("%d %s %d", find[i]->key,find[i]->value,find[i]->label);
 		printf("\n");
 	}
 }
