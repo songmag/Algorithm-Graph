@@ -1,6 +1,4 @@
 #include"FtLNT.h"
-
-
 void insertVertex()
 {
 	COORD xy;
@@ -98,63 +96,14 @@ void printAll()
 	} 
 	system("pause");
 }
-void FastLocation()
+
+void DFS()
 {
-	char A[MAX];
-	int counting;
-	
-	Vertex *start,*minvertex, *oppositevertex;
-	Vertex **FastLocationArray;
-	Link *mv_pointer;
-		
-	FastLocationArray = (Vertex**)malloc(sizeof(Vertex*)*drawgraph->Vsize);
-	counting = 0;
-	setFastestinit();
-	printf("시작 지점 :");
-	scanf("%s", &A);
-	start = findElem(A);
-	if (start == NULL)
-	{
-		printf("출발 정점이 없습니다.");
-	}
-	start->label = 0;
-	Qinit();
-	while (!Empty())
-	{
-		minvertex= pop();
-		mv_pointer = minvertex->HEAD->next;
-		while (mv_pointer != NULL)
-		{
-			oppositevertex = opposite(minvertex, mv_pointer);
-			if (oppositevertex->heapindex != 0)
-			{
-				if (oppositevertex->label > minvertex->label + mv_pointer->EdgeInfo->value)
-				 {
-					oppositevertex->label = minvertex->label + mv_pointer->EdgeInfo->value;
-					replacevertex(oppositevertex);
-					mv_pointer->EdgeInfo->label = VISIT;
-				}
-			}
-			mv_pointer = mv_pointer->next;
-		}
-		FastLocationArray[counting] = minvertex;
-		counting = counting + 1;
-	}//Q가 빌때까지
-	printFastest(FastLocationArray);
-	system("pause");
 }
-void printFastest(Vertex** find)
-{
-	int i;
-	i = 0;
-	for (i = 0; i < drawgraph->Vsize; i++)
-	{
-		if (find[i]->label == INFINITY)
-		{
-			printf("도착할수 없음\n");
-			continue;
-		}
-		printf("%d %s %d", find[i]->key,find[i]->value,find[i]->label);
-		printf("\n");
-	}
+void BFS()
+{}
+int CycleCheck(){
+}
+int PrimAlgo() {
+
 }

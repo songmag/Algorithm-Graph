@@ -1,10 +1,5 @@
 #include "FtLNT.h"
-void gotoxy(COORD xy)
-{
-	xy.X += defaultx;
-	xy.Y += defaulty;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),xy);
-}//콘솔 gotoxy
+
 void mainPage()
 {
 	COORD CTRL;
@@ -73,13 +68,18 @@ void graphprintchoose()
 		printf("1. Tabel출력");
 		down(&xy);
 		printf("2. Graph출력");
+		down(&xy);
+		printf("3. 뒤로가기");
 		chooseDivice[1] = _getch() - 48;
 		switch (chooseDivice[1])
 		{
 		case 1:
+			command = makeTable;
 			break;
 		case 2:
 			break;
+		case 3:
+			return;
 		}
 		if (command != NULL)
 		{
@@ -93,12 +93,14 @@ void handdraw()
 {
 	COORD xy;
 	Divice command;
+	int seed_Edge;
 	while(1)
 	{
 		system("cls");
 		xy.X = 0;
 		xy.Y = 0;
 		gotoxy(xy);
+		seed_Edge = 0;
 		printf("수동입력");
 		xy.X += 1;
 		down(&xy);
@@ -117,7 +119,22 @@ void handdraw()
 			command = insertVertex;
 			break;
 		case 2:
-			command = insertEdge;
+			system("cls");
+			xy.X = 0;
+			xy.Y = 0;
+			gotoxy(xy);
+			printf("1. 문자 입력");
+			down(&xy);
+			printf("2. 키 입력");
+			seed_Edge=_getch() - 48;
+			if (seed_Edge == 1)
+			{
+				command = insertEdge;
+			}
+			else if (seed_Edge == 2)
+			{
+				command = insertEdgeAboutKey;
+			}
 			break;
 		case 3:
 			command = printAll;
@@ -169,6 +186,22 @@ void application()
 		case 2:
 			break;
 		case 3:
+			printf("1. 정점 Value 입력");
+			printf("2. 정점 Key 입력");
+			chooseDivice[1] = _getch() - 48;
+			if (chooseDivice[1] == 1)
+			{
+				command = FastLocationValue;
+			}
+			else if (chooseDivice[1] == 2)
+			{
+				command = FastLocationKey;
+			}
+			else
+			{
+				printf("제대로 된 값을 입력해주세요");
+				break;
+			}
 			break;
 		case 4:
 			break;
@@ -187,9 +220,4 @@ void application()
 			command();
 		}
 	}
-}
-void down(COORD *xy)
-{
-	(*xy).Y += 2;
-	gotoxy(*xy);
 }

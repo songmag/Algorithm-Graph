@@ -6,6 +6,7 @@
 #include <Windows.h>
 #include<time.h>
 #include<conio.h>
+#include<math.h>
 //#include <pthread.h>
 
 //무방향 그래프
@@ -25,7 +26,7 @@
 //label과 value 설정
 #define FRESH 10000
 #define VISIT 200000
-#define INFINITY 88888
+#define INFINITYVALUE 88888
 #define MAX 15
 //Q설정
 #define parent(x) x/2
@@ -34,6 +35,7 @@
 //배경 설정
 #define defaultx 10
 #define defaulty 3
+
 typedef struct Graph {
 	struct vertex *VArray;
 	struct edge *EArray;
@@ -76,23 +78,20 @@ typedef struct Q {
 	int *heap;//키를 저장
 	int last;//마지막 index 저장
 }Q;
-int chooseDivice[2];//Main Page에서 선택된 작업으로 변동
 typedef void (*Divice)();
+
 ///////////////FastestLocation.c/////////////////
 void insertVertex();//정점입력
 void insertEdge();//간선입력
 void Graphinit();//그래프 초기화
 ///////////////MainPage.c////////////////////////
-void gotoxy(COORD);
-
 void mainPage();
 void graphinitprint();
 void graphprintchoose();
 void handdraw();
 void application();
-
-void down(COORD*);//goto down
 //전역처리//
+int chooseDivice[2];//Main Page에서 선택된 작업으로 변동
 G *drawgraph;
 Q *FastestCheck;
 //////////////divice.c///////////////////////////
@@ -106,11 +105,13 @@ Vertex *opposite(Vertex *, Link *);//반대쪽 정점 반환
 Vertex *EdgetoVertex(Vertex*, Edge *);//간선을 통한 반대쪽
 void insertlink(Vertex *,Vertex *);//인접리스트 구현
 Vertex *FindAboutKey(int key);
-void FastLocation();
+
 void printAll();
 void setFastestinit();
 void printFastest(Vertex**);
 void randominsertVertex();
+void insertEdgeAboutKey();//키값을 통한 간선 생성
+void paintVertex(Vertex*);
 //////////////Q.c/////////////////////////////////
 void Qinit();
 void HeapMakeToUp();
@@ -122,3 +123,25 @@ int Empty();
 void printheap();
 void replacevertex(Vertex *);
 void upheap(int);
+//////////DrawTable.c//////////////////////////
+//////////그래프 그리기//////////////////////
+void makeTable();
+void drawtable();
+void graphdirect(int, int);
+void drawEmptyTable();
+//////////consolecontrol/////////////////////
+void gotoxy(COORD);
+void right(COORD *xy, int maxsize);//오른쪽으로 maxsize만큼이동
+void down(COORD*);//아래쪽으로 2만큼 이동
+void downindex(COORD *xy, int raws);//아래쪽으로 raws만큼 이동
+void changeColor(int color);//컬러변경
+void graphvertexY(int key);
+void graphvertexX(int key);
+void paintFast(Vertex* startVertex, Vertex* minVertex);
+void cantarrived(Vertex* startVertex, Vertex* minVertex);
+//////////////FastLocation.c///////////////////////
+void FastLocationValue();
+void FastLocationKey();
+/////////////DFS.c/////////////////////////////////
+void DFS(Vertex*);
+void RDFS(Vertex*);
