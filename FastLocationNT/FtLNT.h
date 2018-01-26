@@ -129,19 +129,27 @@ void makeTable();
 void drawtable();
 void graphdirect(int, int);
 void drawEmptyTable();
+void drawEmptyTableY();
 //////////consolecontrol/////////////////////
 void gotoxy(COORD);
 void right(COORD *xy, int maxsize);//오른쪽으로 maxsize만큼이동
 void down(COORD*);//아래쪽으로 2만큼 이동
 void downindex(COORD *xy, int raws);//아래쪽으로 raws만큼 이동
 void changeColor(int color);//컬러변경
-void graphvertexY(int key);
-void graphvertexX(int key);
-void paintFast(Vertex* startVertex, Vertex* minVertex);
-void cantarrived(Vertex* startVertex, Vertex* minVertex);
+void graphvertexY(int key);//Table Y축 방향
+void graphvertexX(int key);//Table X축 방향
+void graphdirect(int key, int key2);//키 2개로 하는 작업
 //////////////FastLocation.c///////////////////////
 void FastLocationValue();
 void FastLocationKey();
+
+void cantarrived(Vertex* startVertex, Vertex* minVertex,int backcounting);//도착할 수 없는 정점 그리기
+void paintFast(Vertex* startVertex, Vertex* minVertex,int counting);//FastPainting
 /////////////DFS.c/////////////////////////////////
-void DFS(Vertex*);
-void RDFS(Vertex*);
+
+void Dfs(int key);
+
+void RDfs(Vertex* oppositevertex, int *count);
+
+void Dfsinit();
+void DfsDraw();

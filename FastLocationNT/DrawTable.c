@@ -38,6 +38,7 @@ void drawtable()
 		move_vertex = move_vertex->next;
 	}
 	down(&xy);
+	changeColor(15);
 }
 void drawEmptyTable()
 {
@@ -54,6 +55,25 @@ void drawEmptyTable()
 		xy.Y = 0;
 		gotoxy(xy);
 		printf("%d", move_vertex->key);
+		xy.X = 0;
+		xy.Y = i;
+		gotoxy(xy);
+		printf("%d", move_vertex->key);
+		move_vertex = move_vertex->next;
+	}
+	down(&xy);
+}
+void drawEmptyTableY()
+{
+	int i, key;
+	Vertex *move_vertex;
+	COORD xy;
+	Link *move_link;
+	move_vertex = drawgraph->VArray->next;
+	move_link = move_vertex->HEAD->next;
+	for (i = 1; i <= drawgraph->Vsize; i++)
+	{
+		changeColor(5 + i);
 		xy.X = 0;
 		xy.Y = i;
 		gotoxy(xy);

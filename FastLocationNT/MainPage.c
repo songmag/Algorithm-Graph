@@ -63,7 +63,6 @@ void graphprintchoose()
 		command = NULL;
 		system("cls");
 		gotoxy(xy);
-		printf("\n");
 		down(&xy);
 		printf("1. Tabel출력");
 		down(&xy);
@@ -182,11 +181,17 @@ void application()
 		switch (chooseDivice[1])
 		{
 		case 1:
+			command = DfsDraw;
 			break;
 		case 2:
 			break;
 		case 3:
+			system("cls");
+			xy.X = 0;
+			xy.Y = 0;
+			gotoxy(xy);
 			printf("1. 정점 Value 입력");
+			down(&xy);
 			printf("2. 정점 Key 입력");
 			chooseDivice[1] = _getch() - 48;
 			if (chooseDivice[1] == 1)

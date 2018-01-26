@@ -301,17 +301,3 @@ void paintVertex(Vertex* startVertex)
 	printf("%d", startVertex->key);
 	return;
 }//최소값 혹은 시작 값
-void paintFast(Vertex* startVertex, Vertex* minVertex)
-{
-	changeColor(7);
-	graphdirect(startVertex->key, minVertex->key);
-	printf("%d", minVertex->label);
-	return;
-}
-void cantarrived(Vertex* startVertex, Vertex* minVertex)
-{
-	changeColor(7);
-	graphdirect(startVertex->key, minVertex->key);
-	printf("X");
-	return;
-}

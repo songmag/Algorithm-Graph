@@ -27,8 +27,8 @@ void right(COORD *xy, int maxsize)
 void graphdirect(int key, int key2)
 {
 	COORD xy;
-	xy.X = key * 4;
-	xy.Y = key2;
+	xy.X = key2*4;
+	xy.Y = key;
 	gotoxy(xy);
 }//그래프 위치로 가는 함수
 void graphvertexX(int key)
