@@ -143,7 +143,7 @@ Vertex* pop()
 }
 int Empty()
 {
-	return (FastestCheck->last == 0) ? 1 : 0;
+	return (FastestCheck->last <= 0) ? 1 : 0;
 }//비었으면 1(참),아니면 0;
 void upheap(int index)
 {

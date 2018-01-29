@@ -42,7 +42,7 @@ void drawtable()
 }
 void drawEmptyTable()
 {
-	int i, key;
+	int i;
 	Vertex *move_vertex;
 	COORD xy;
 	Link *move_link;
@@ -61,11 +61,12 @@ void drawEmptyTable()
 		printf("%d", move_vertex->key);
 		move_vertex = move_vertex->next;
 	}
+	changeColor(15);
 	down(&xy);
 }
 void drawEmptyTableY()
 {
-	int i, key;
+	int i;
 	Vertex *move_vertex;
 	COORD xy;
 	Link *move_link;
@@ -80,5 +81,16 @@ void drawEmptyTableY()
 		printf("%d", move_vertex->key);
 		move_vertex = move_vertex->next;
 	}
+	changeColor(15);
 	down(&xy);
 }
+
+void paintVertex(Vertex* startVertex)
+{
+	changeColor(7);
+	graphvertexX(startVertex->key);
+	printf("%d", startVertex->key);
+	graphvertexY(startVertex->key);
+	printf("%d", startVertex->key);
+	return;
+}//최소값 혹은 시작 값

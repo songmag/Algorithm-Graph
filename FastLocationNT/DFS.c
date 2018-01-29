@@ -2,7 +2,6 @@
 
 void DfsDraw()
 {
-	COORD xy;
 	int key;
 	drawEmptyTable();
 	printf("시작점 입력");
@@ -16,51 +15,38 @@ void DfsDraw()
 	graphvertexX(key);
 	graphvertexY(key);
 	Dfs(key);
-
 }
 
 void Dfs(int key)
 {
 	Vertex *mv_pointer;
 	//Link *mv_link;
+	dfs_struct *key_Array;
 	int count;
+	key_Array = (dfs_struct*)malloc(sizeof(dfs_struct)*((drawgraph->Vsize)*(drawgraph->Vsize-1)/2));
+
+	Dfsinit(key_Array);
 	count = 0;
-	system("cls");
-	Dfsinit();
 	
 	mv_pointer = FindAboutKey(key);
-	RDfs(mv_pointer, &count);
-	/*mv_pointer->label = VISIT;
-	mv_link = mv_pointer->HEAD->next;
-	while (mv_link != NULL)
-	{
-		if (mv_link->EdgeInfo->label != VISIT)
-		{
-			printf("key >> %d count>> %d\n", mv_pointer->key, count);
-			mv_link->EdgeInfo->label = VISIT;
-			RDfs(opposite(mv_pointer, mv_link), &count);
-			mv_link = mv_link->next;
-		}
-		else
-		{
-			mv_link = mv_link->next;
-		}
-	}*/
+	key_Array[0].before = mv_pointer->key;
+	RDfs(mv_pointer,key_Array,&count);
+	
+	Dfsprint(key_Array,count);
+	free(key_Array);
 	system("pause");
 	return;
 }
-void RDfs(Vertex* oppositevertex,int *count)
+void RDfs(Vertex* oppositevertex,dfs_struct *keyArray,int *count)
 {
 	Link *mv_link;
-	(*count) += 1;
 	
 	if (oppositevertex->label == VISIT)
 	{
 		return;
 	}
-	
+	keyArray[(*count)++].after = oppositevertex->key;
 	oppositevertex->label = VISIT;
-	
 	mv_link=oppositevertex->HEAD->next;
 	
 	while (mv_link != NULL)
@@ -68,18 +54,21 @@ void RDfs(Vertex* oppositevertex,int *count)
 		if (mv_link->EdgeInfo->label != VISIT)
 		{
 			mv_link->EdgeInfo->label = VISIT;
-			printf("key >> %d count>> %d\n", oppositevertex->key, (*count));
-	        RDfs(opposite(oppositevertex,mv_link),&(*count));
+			keyArray[(*count)].before = oppositevertex->key;
+			RDfs(opposite(oppositevertex,mv_link),keyArray,&(*count));
 			mv_link = mv_link->next;
 		}
-			else
+		else
+		{
 			mv_link = mv_link->next;
+		}
 	}
 }
-void Dfsinit()
+void Dfsinit(dfs_struct *keyArray)
 {
 	Vertex *mv_pointer;
 	Edge *mv_Epointer;
+	int i;
 	mv_pointer = drawgraph->VArray->next;
 	mv_Epointer = drawgraph->EArray->next;
 	while (mv_pointer != NULL)
@@ -93,4 +82,29 @@ void Dfsinit()
 
 		mv_Epointer = mv_Epointer->next;
 	}
+	for (i = 0; i < ((drawgraph->Vsize)*(drawgraph->Vsize - 1) / 2); i++)
+	{
+		keyArray[i].after = FRESH;
+		keyArray[i].before = FRESH;
+	}
+}
+void Dfsprint(dfs_struct *keyArray,int dfs_count)
+{
+	int i;
+	int count;
+	count = 0;
+	i = 0;
+	graphdirect(keyArray[i].after, keyArray[i].before);
+	printf("%d", count);
+	for (; i< dfs_count; i++)
+	{
+		if (keyArray[i].after == FRESH)
+		{
+			break;
+		}
+		graphdirect(keyArray[i].before, keyArray[i].after);
+		printf("%d", ++count);
+		Sleep(300);
+	}
+	graphvertexY(20);
 }

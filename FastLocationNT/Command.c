@@ -32,6 +32,7 @@ void insertVertex()
 void insertEdge()
 {
 	char A[MAX],B[MAX];
+	int weight;
 	Vertex *connect1;
 	Vertex *connect2;
 	COORD xy;
@@ -45,12 +46,14 @@ void insertEdge()
 
 	printf("정점1 입력 :");
 	scanf("%s", &A);
-	xy.Y +=  2;
-	gotoxy(xy);
+	down(&xy);
 	printf("정점2 입력 :");
 	scanf("%s", &B);
 	connect1 = findElem(A);
 	connect2 = findElem(B);
+	down(&xy);
+	printf("간선 weight 입력 : ");
+	scanf("%d", &weight);
 	if (connect1 == NULL || connect2 == NULL)
 	{
 		xy.Y+=1;
@@ -61,7 +64,14 @@ void insertEdge()
 	}
 	if(Edgecheck(connect1, connect2))
 	{
-		Edgeinput(connect1, connect2);
+		if (weight != 0)
+		{
+			Edgeinputofweight(connect1, connect2, weight);
+		}
+		else
+		{
+			Edgeinput(connect1, connect2);
+		}
 		insertlink(connect1,connect2);
 		insertlink(connect2,connect1);		
 	}//연결되어있는 간선이 없는경우에만 시행
@@ -75,6 +85,54 @@ void insertEdge()
 	}
 	return;
 }//간선 삽입
+void insertEdgeAboutKey()
+{
+	int key1, key2,weight;
+	Vertex *ver1, *ver2;
+	COORD xy;
+	xy.X = 0;
+	xy.Y = 0;
+	gotoxy(xy);
+	printf("1번 Key 값 입력 :");
+	scanf(" %d", &key1);
+	down(&xy);
+	printf("2번 key 값 입력 :");
+	scanf(" %d", &key2);
+	down(&xy);
+	printf("weight 입력 : ");
+	scanf(" %d", &weight);
+	ver1 = FindAboutKey(key1);
+	ver2 = FindAboutKey(key2);
+	if (ver1 != NULL && ver2 != NULL &&Edgecheck(ver1, ver2))
+	{
+		if (weight != 0)
+		{
+			Edgeinputofweight(ver1, ver2, weight);
+		}
+		else
+			Edgeinput(ver1, ver2);
+		insertlink(ver1, ver2);
+		insertlink(ver2, ver1);
+	}
+	else if (ver1 == NULL)
+	{
+		printf("key>> %d는 존재하지 않습니다.\n", key1);
+		system("pause");
+		return;
+	}
+	else if (ver2 == NULL)
+	{
+		printf("key>> %d는 존재하지 않습니다.\n", key2);
+		system("pause");
+		return;
+	}
+	else
+	{
+		printf("존재하는 간선입니다.");
+		system("pause");
+		return;
+	}
+}//키를 이용한 간선삽입
 void printAll()
 {
 	Link *mv_pointer;

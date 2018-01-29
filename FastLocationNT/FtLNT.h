@@ -79,7 +79,10 @@ typedef struct Q {
 	int last;//마지막 index 저장
 }Q;
 typedef void (*Divice)();
-
+typedef struct Dfs_struct{
+	int before;
+	int after;
+}dfs_struct;
 ///////////////FastestLocation.c/////////////////
 void insertVertex();//정점입력
 void insertEdge();//간선입력
@@ -90,6 +93,7 @@ void graphinitprint();
 void graphprintchoose();
 void handdraw();
 void application();
+
 //전역처리//
 int chooseDivice[2];//Main Page에서 선택된 작업으로 변동
 G *drawgraph;
@@ -105,7 +109,7 @@ Vertex *opposite(Vertex *, Link *);//반대쪽 정점 반환
 Vertex *EdgetoVertex(Vertex*, Edge *);//간선을 통한 반대쪽
 void insertlink(Vertex *,Vertex *);//인접리스트 구현
 Vertex *FindAboutKey(int key);
-
+void Edgeinputofweight(Vertex *first, Vertex *second, int weight);
 void printAll();
 void setFastestinit();
 void printFastest(Vertex**);
@@ -149,7 +153,9 @@ void paintFast(Vertex* startVertex, Vertex* minVertex,int counting);//FastPainti
 
 void Dfs(int key);
 
-void RDfs(Vertex* oppositevertex, int *count);
+void RDfs(Vertex* oppositevertex, dfs_struct*,int*);
 
-void Dfsinit();
+void Dfsinit(dfs_struct*);
 void DfsDraw();
+
+void Dfsprint(dfs_struct *keyArray,int);

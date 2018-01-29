@@ -6,10 +6,10 @@ void FastLocationValue()
 	int counting;
 	int backcounting;
 	Vertex *start, *minvertex, *oppositevertex;
-	Vertex **FastLocationArray;
+	//Vertex **FastLocationArray;
 	Link *mv_pointer;
 
-	FastLocationArray = (Vertex**)malloc(sizeof(Vertex*)*drawgraph->Vsize);
+	//FastLocationArray = (Vertex**)malloc(sizeof(Vertex*)*drawgraph->Vsize);
 	counting = 1;
 	backcounting = drawgraph->Vsize;
 	setFastestinit();
@@ -31,11 +31,11 @@ void FastLocationValue()
 		if (minvertex->label == INFINITYVALUE)
 		{
 			cantarrived(start, minvertex,backcounting--);
-			Sleep(50);
+			Sleep(100);
 			continue;
 		}//아무것도 변경 되지 않았을 경우
 		paintFast(start, minvertex,counting);
-		Sleep(50);
+		Sleep(150);
 		mv_pointer = minvertex->HEAD->next;
 		while (mv_pointer != NULL)
 		{
@@ -51,12 +51,13 @@ void FastLocationValue()
 			}
 			mv_pointer = mv_pointer->next;
 		}
-		FastLocationArray[counting] = minvertex;
+		//FastLocationArray[counting] = minvertex;
 		counting = counting + 1;
 	}//Q가 빌때까지
 	 //printFastest(FastLocationArray);
 	QFree();
-	free(FastLocationArray);
+	//free(FastLocationArray);
+	graphvertexY(15);
 	system("pause");
 }
 
@@ -67,7 +68,6 @@ void FastLocationKey()
 	int backcounting;
 	COORD xy;
 	Vertex *start, *minvertex, *oppositevertex;
-	Vertex **FastLocationArray;
 	Link *mv_pointer;
 	xy.X = 0;
 	xy.Y = drawgraph->Vsize;
@@ -116,10 +116,8 @@ void FastLocationKey()
 	//	FastLocationArray[counting] = minvertex;
 		counting = counting + 1;
 	}//Q가 빌때까지
-	 //printFastest(FastLocationArray);
 	QFree();
-	//free(FastLocationArray);
-	gotoxy(xy);
+	graphvertexY(15);
 	system("pause");
 }
 

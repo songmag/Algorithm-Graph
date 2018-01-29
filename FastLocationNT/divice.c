@@ -41,6 +41,22 @@ void Graphinit()
 	drawgraph->EArray->next = NULL;
 	//간선
 }
+void Edgeinputofweight(Vertex *first, Vertex *second, int weight)
+{
+	Edge* make;
+
+	make = (Edge*)malloc(sizeof(Edge));
+	drawgraph->Esize += 1;
+	make->connect1 = first;
+	make->connect2 = second;
+	make->value = weight;
+	make->next = NULL;
+	make->front = drawgraph->insertE;
+	make->label = FRESH;
+	drawgraph->insertE->next = make;
+	drawgraph->insertE = make;
+	drawgraph->Eptr->TAIL = make;
+}
 void Edgeinput(Vertex *first, Vertex *second)
 {
 	Edge* make;
@@ -257,47 +273,3 @@ void randominsertVertex()
 		}
 	}
 }
-void insertEdgeAboutKey()
-{
-	int key1, key2;
-	Vertex *ver1, *ver2;
-	printf("1번 Key 값 입력 :");
-	scanf(" %d", &key1);
-	printf("2번 key 값 입력 :");
-	scanf(" %d", &key2);
-	ver1 = FindAboutKey(key1);
-	ver2 = FindAboutKey(key2);
-	if (ver1 != NULL && ver2 != NULL &&Edgecheck(ver1, ver2))
-	{
-		Edgeinput(ver1, ver2);
-		insertlink(ver1, ver2);
-		insertlink(ver2, ver1);
-	}
-	else if(ver1 == NULL)
-	{
-		printf("key>> %d는 존재하지 않습니다.\n",key1);
-		system("pause");
-		return;
-	}
-	else if (ver2 == NULL)
-	{
-		printf("key>> %d는 존재하지 않습니다.\n", key2);
-		system("pause");
-		return;
-	}
-	else
-	{
-		printf("존재하는 간선입니다.");
-		system("pause");
-		return;
-	}
-}
-void paintVertex(Vertex* startVertex)
-{
-	changeColor(7);
-	graphvertexX(startVertex->key);
-	printf("%d", startVertex->key);
-	graphvertexY(startVertex->key);
-	printf("%d", startVertex->key);
-	return;
-}//최소값 혹은 시작 값
