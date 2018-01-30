@@ -28,6 +28,7 @@
 #define VISIT 200000
 #define INFINITYVALUE 88888
 #define MAX 15
+#define TREEEDGE 78787878
 //Q설정
 #define parent(x) x/2
 #define leftchild(x) x*2
@@ -83,6 +84,10 @@ typedef struct Dfs_struct{
 	int before;
 	int after;
 }dfs_struct;
+typedef struct Bfs_struct {
+	Vertex* before;
+	Vertex* after;
+}bfs_struct;
 ///////////////FastestLocation.c/////////////////
 void insertVertex();//정점입력
 void insertEdge();//간선입력

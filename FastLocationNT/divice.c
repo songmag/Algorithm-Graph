@@ -241,11 +241,21 @@ void randominsertVertex()
 {
 	int seed_vertex;
 	char random_char[MAX];
-	int i;
+	int i, vertex_size,edge_size;
 	Vertex *one, *two;
+	COORD xy;
+	xy.X = 0;
+	xy.Y = 0;
+	gotoxy(xy);
 	srand(time(NULL));
 	seed_vertex = 10;
-	while (drawgraph->Vsize < 10)
+	printf("please type vertex_size :");
+	scanf(" %d", &vertex_size);
+	down(&xy);
+	printf("please type edge_size :");
+	scanf(" %d", &edge_size);
+
+	while (drawgraph->Vsize < vertex_size)
 	{
 		for (i = 0; i < MAX; i++)
 		{
@@ -258,7 +268,7 @@ void randominsertVertex()
 			vertexinit(&random_char);
 		}
 	}
-	while (drawgraph->Esize < 20)
+	while (drawgraph->Esize < edge_size)
 	{
 		seed_vertex = rand() % 10+1;
 		one = FindAboutKey(seed_vertex);

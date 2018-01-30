@@ -111,6 +111,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\BFS.C" />
     <ClCompile Include="..\..\ConsoleControl.c" />
     <ClCompile Include="..\..\DFS.c" />
     <ClCompile Include="..\..\divice.c" />

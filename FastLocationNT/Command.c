@@ -155,11 +155,6 @@ void printAll()
 	system("pause");
 }
 
-void DFS()
-{
-}
-void BFS()
-{}
 int CycleCheck(){
 }
 int PrimAlgo() {
