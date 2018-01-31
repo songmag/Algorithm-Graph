@@ -246,6 +246,8 @@ void randominsertVertex()
 	COORD xy;
 	xy.X = 0;
 	xy.Y = 0;
+
+	system("cls");
 	gotoxy(xy);
 	srand(time(NULL));
 	seed_vertex = 10;
@@ -254,7 +256,13 @@ void randominsertVertex()
 	down(&xy);
 	printf("please type edge_size :");
 	scanf(" %d", &edge_size);
-
+	if (edge_size > (vertex_size-1)*(vertex_size) / 2)
+	{
+		system("cls");
+		printf("간선의 개수가 너무 많습니다. 처음부터 다시 해주십쇼.");
+		system("pause");
+		return;
+	}
 	while (drawgraph->Vsize < vertex_size)
 	{
 		for (i = 0; i < MAX; i++)
@@ -270,9 +278,9 @@ void randominsertVertex()
 	}
 	while (drawgraph->Esize < edge_size)
 	{
-		seed_vertex = rand() % 10+1;
+		seed_vertex = (rand() % 20)+1;
 		one = FindAboutKey(seed_vertex);
-		seed_vertex = rand() % 10+1;
+		seed_vertex = (rand() % 20)+1;
 		two = FindAboutKey(seed_vertex);
 
 		if ( one != NULL && two !=NULL && Edgecheck(one, two))

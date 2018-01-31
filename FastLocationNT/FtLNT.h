@@ -88,6 +88,22 @@ typedef struct Bfs_struct {
 	Vertex* before;
 	Vertex* after;
 }bfs_struct;
+/////////////bfs.struct//////////
+
+typedef struct listQ {
+	Vertex *elem;
+	struct listQ *next;
+	struct listQ *front;
+}listQ;
+
+typedef struct informationHT {
+	struct listQ *head;
+	struct listQ *tail;
+}informationHT;
+
+
+
+
 ///////////////FastestLocation.c/////////////////
 void insertVertex();//정점입력
 void insertEdge();//간선입력
@@ -164,3 +180,11 @@ void Dfsinit(dfs_struct*);
 void DfsDraw();
 
 void Dfsprint(dfs_struct *keyArray,int);
+/////////////BFS.c//////////////////////////////////
+void Bfs();
+void BfsWork(bfs_struct *bfs_after, int count);
+Vertex *Bfsinit();
+void listinit(Vertex *start, informationHT *HT);
+void inlist(Vertex *insertlist, informationHT *HT);
+Vertex *deletfirstlist(informationHT *HT);
+int Ls_empty(informationHT *HT);

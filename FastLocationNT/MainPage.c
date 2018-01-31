@@ -184,6 +184,7 @@ void application()
 			command = DfsDraw;
 			break;
 		case 2:
+			command = Bfs;
 			break;
 		case 3:
 			system("cls");
