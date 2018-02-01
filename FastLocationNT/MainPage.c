@@ -33,7 +33,9 @@ void graphinitprint()
 	down(&xy);
 	printf("2. random 생성");
 	down(&xy);
-	printf("3. 종료");
+	printf("3. example 생성");
+	down(&xy);
+	printf("4. 종료");
 	chooseDivice[1] = _getch() - 48;
 	switch (chooseDivice[1])
 	{
@@ -44,6 +46,7 @@ void graphinitprint()
 		randominsertVertex();
 		return;
 	case 3:
+		exampleinit();
 		return;
 	default:
 		system("cls");
@@ -51,6 +54,52 @@ void graphinitprint()
 		system("pause");
 		break;
 	}
+}
+void exampleinit()
+{
+	COORD xy;
+	Divice command;
+	command = NULL;
+	xy.X = 0;
+	xy.Y = 0;
+	system("cls");
+	gotoxy(xy);
+	printf("example 생성 \n");
+	down(&xy);
+	printf("1. 숫자(6)(Random Wegiht)");
+	down(&xy);
+	printf("2. 숫자(8)(Random Weight)");
+	down(&xy);
+	printf("3. 영문자(a~g)(fix_Weight)");
+	down(&xy);
+	printf("4. 영문자(a~e)(fix_Weight)");
+	chooseDivice[1] = _getch() - 48;
+	switch (chooseDivice[1])
+	{
+	case 1:
+		command = example1;
+		break;
+	case 2:
+		command = example2;
+		break;
+	case 3:
+		command = example3;
+		break;
+	case 4:
+		command = example4;
+		break;
+	default:
+		system("cls");
+		printf("정확한 값을 입력해주세요\n");
+		system("pause");
+		break;
+	}
+	if (command != NULL)
+	{
+		command();
+		return;
+	}
+	return;
 }
 void graphprintchoose()
 {

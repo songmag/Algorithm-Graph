@@ -117,6 +117,7 @@
     <ClCompile Include="..\..\divice.c" />
     <ClCompile Include="..\..\DrawTable.c" />
     <ClCompile Include="..\..\Command.c" />
+    <ClCompile Include="..\..\exampleFile.c" />
     <ClCompile Include="..\..\FastLocation.c" />
     <ClCompile Include="..\..\StartPage.c" />
     <ClCompile Include="..\..\MainPage.c" />

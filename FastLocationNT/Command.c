@@ -6,7 +6,6 @@ void insertVertex()
 	
 	xy.X = 0;
 	xy.Y = 0;
-
 	gotoxy(xy);
 	printf("값을 입력하시오 : ");
 	scanf("%s",&insertValue);

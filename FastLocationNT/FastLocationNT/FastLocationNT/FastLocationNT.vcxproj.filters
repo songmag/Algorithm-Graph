@@ -45,6 +45,9 @@
     <ClCompile Include="..\..\BFS.C">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\exampleFile.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\FtLNT.h">

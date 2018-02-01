@@ -79,7 +79,9 @@ typedef struct Q {
 	int *heap;//키를 저장
 	int last;//마지막 index 저장
 }Q;
+
 typedef void (*Divice)();
+
 typedef struct Dfs_struct{
 	int before;
 	int after;
@@ -114,7 +116,7 @@ void graphinitprint();
 void graphprintchoose();
 void handdraw();
 void application();
-
+void exampleinit();
 //전역처리//
 int chooseDivice[2];//Main Page에서 선택된 작업으로 변동
 G *drawgraph;
@@ -188,3 +190,11 @@ void listinit(Vertex *start, informationHT *HT);
 void inlist(Vertex *insertlist, informationHT *HT);
 Vertex *deletfirstlist(informationHT *HT);
 int Ls_empty(informationHT *HT);
+//////////example.c///////
+void example1();
+void example2();
+void example3();
+void example4();
+
+void insert_fix_value(char *value);
+void insert_fix_Edge(char *key1, char *key2, int insert_weight);
