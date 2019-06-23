@@ -5,3 +5,4 @@
 C Language
 
 # Function
+DFS, BFS, FastLocation, Graphinit
